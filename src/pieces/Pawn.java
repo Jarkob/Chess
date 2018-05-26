@@ -5,7 +5,7 @@ import models.Tile;
 
 public class Pawn extends Piece
 {
-	public Pawn(Tile tile, String color)
+	public Pawn(Tile tile, boolean color)
 	{
 		super(tile, color);
 		// TODO Auto-generated constructor stub

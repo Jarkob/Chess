@@ -10,7 +10,7 @@ public class Board
 		boolean colorIndex = false;
 		for(int y = 1; y < 9; y++) {
 			for(int x = 97; x < 105; x++) {
-				this.tiles.put(new Tuple<Character, Integer>((char) x, y), new Tile((char) x, y, colorIndex));
+				this.tiles.put(new Tuple<Character, Integer>((char) x, y), new Tile((char) x, y, colorIndex)).setBoard(this);
 				colorIndex ^= true;
 			}
 			colorIndex ^= true;

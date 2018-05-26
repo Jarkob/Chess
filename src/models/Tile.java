@@ -13,6 +13,7 @@ public class Tile
 	private char x;
 	private int y;
 	private boolean color;
+	private Board board;
 	private Piece piece;
 	
 	public char getX()
@@ -38,6 +39,12 @@ public class Tile
 	public void setColor(boolean color)
 	{
 		this.color = color;
+	}
+	public Board getBoard() {
+		return board;
+	}
+	public void setBoard(Board board) {
+		this.board = board;
 	}
 	public Piece getPiece()
 	{

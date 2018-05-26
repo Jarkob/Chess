@@ -5,7 +5,7 @@ import models.Tile;
 
 public class Knight extends Piece
 {
-	public Knight(Tile tile, String color)
+	public Knight(Tile tile, boolean color)
 	{
 		super(tile, color);
 		// TODO Auto-generated constructor stub

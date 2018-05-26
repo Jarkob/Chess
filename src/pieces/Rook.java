@@ -5,7 +5,7 @@ import models.Tile;
 
 public class Rook extends Piece
 {
-	public Rook(Tile tile, String color)
+	public Rook(Tile tile, boolean color)
 	{
 		super(tile, color);
 		// TODO Auto-generated constructor stub

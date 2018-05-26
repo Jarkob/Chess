@@ -4,14 +4,14 @@ import models.Move;
 import models.Tile;
 
 public abstract class Piece {
-	public Piece(Tile tile, String color) {
+	public Piece(Tile tile, boolean color) {
 		this.tile = tile;
 		this.tile.setPiece(this);
 		this.color = color;
 	}
 
 	protected Tile tile;
-	protected String color;
+	protected boolean color;
 	
 	public Tile getTile()
 	{
@@ -21,11 +21,11 @@ public abstract class Piece {
 	{
 		this.tile = tile;
 	}
-	public String getColor()
+	public boolean isColor()
 	{
 		return color;
 	}
-	public void setColor(String color)
+	public void setColor(boolean color)
 	{
 		this.color = color;
 	}
