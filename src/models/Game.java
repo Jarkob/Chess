@@ -9,9 +9,17 @@ import pieces.Pawn;
 import pieces.Queen;
 import pieces.Rook;
 
-// could be prettier although it will never change
+/**
+ * class represents one game between two players
+ * @author jakobbussas
+ * 
+ */
 public class Game
 {
+	/**
+	 * creates new Game instance
+	 * @param id id of the game
+	 */
 	public Game(int id) {
 		this.id = id;
 		this.board = new Board(id);
@@ -62,6 +70,11 @@ public class Game
 				new King(this.board.getTiles().get(new Tuple<Character, Integer>((char) 101, 8)), false));
 	}
 	
+	/**
+	 * runs the game
+	 * if this method is left, the game stops
+	 * @param args run arguments (currently unused)
+	 */
 	public void run(String[] args) {
 		System.out.printf("Chess - by Jakob Bussas%n%n");
 		
@@ -123,25 +136,50 @@ public class Game
 	}
 	
 	private int id;
+
 	private Board board;
-	
+
+	/**
+	 * get the id
+	 * @return the id
+	 */
 	public int getId()
 	{
 		return id;
 	}
+	
+	/**
+	 * set the id
+	 * @param id the id
+	 */
 	public void setId(int id)
 	{
 		this.id = id;
 	}
+	
+	/**
+	 * get the board
+	 * @return the board
+	 */
 	public Board getBoard()
 	{
 		return board;
 	}
+	
+	/**
+	 * set the board
+	 * @param board the board
+	 */
 	public void setBoard(Board board)
 	{
 		this.board = board;
 	}
 	
+	/**
+	 * check if input is valid
+	 * @param inputChars the input as array of chars
+	 * @return if input is valid
+	 */
 	public boolean isInputValid(char[] inputChars) {
 		if(inputChars.length != 5) {
 			System.out.println("Wrong input format, input needs to be 5 characters long.");
@@ -164,9 +202,5 @@ public class Game
 		} else {
 			return true;
 		}
-	}
-	
-	public boolean isMoveValid(Move move) {
-		return true;
 	}
 }

@@ -2,8 +2,17 @@ package models;
 
 import java.util.Hashtable;
 
+/**
+ * represents a chess board
+ * @author jakobbussas
+ *
+ */
 public class Board
 {
+	/**
+	 * creates a new board
+	 * @param id the id
+	 */
 	public Board(int id) {
 		this.id = id;
 		this.tiles = new Hashtable<Tuple<Character, Integer>, Tile>();
@@ -21,23 +30,45 @@ public class Board
 	private int id;
 	private Hashtable<Tuple<Character, Integer>, Tile> tiles;
 	
+	/**
+	 * get the id
+	 * @return the id
+	 */
 	public int getId()
 	{
 		return id;
 	}
+	
+	/**
+	 * set the id
+	 * @param id the id
+	 */
 	public void setId(int id)
 	{
 		this.id = id;
 	}
+	
+	/**
+	 * get the tiles
+	 * @return the tiles
+	 */
 	public Hashtable<Tuple<Character, Integer>, Tile> getTiles()
 	{
 		return tiles;
 	}
+	
+	/**
+	 * set the tiles
+	 * @param tiles the tiles
+	 */
 	public void setTiles(Hashtable<Tuple<Character, Integer>, Tile> tiles)
 	{
 		this.tiles = tiles;
 	}
 	
+	/**
+	 * formats the board as a string to print
+	 */
 	@Override
 	public String toString()
 	{
