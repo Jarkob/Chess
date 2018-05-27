@@ -55,6 +55,21 @@ public class Tile
 		this.piece = piece;
 	}
 	
+	@Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Tile)){
+            return false;
+        }
+
+        Tile other_ = (Tile) other;
+
+        return other_.getX() == this.getX() && other_.getY() == this.getY();
+    }
+	
 	// TODO: update for display of occupying piece
 	@Override
 	public String toString()
