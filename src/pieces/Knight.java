@@ -14,8 +14,14 @@ public class Knight extends Piece
 	@Override
 	public boolean isMoveLegal(Move move)
 	{
-		// TODO Auto-generated method stub
+		if((((int) move.getNewTile().getX() == (int) move.getOldTile().getX() + 1 || (int) move.getNewTile().getX() == (int) move.getOldTile().getX() - 1) && (move.getNewTile().getY() == move.getOldTile().getY() + 2 || move.getNewTile().getY() == move.getOldTile().getY() - 2))
+				|| ((move.getNewTile().getY() == move.getOldTile().getY() + 1 || move.getNewTile().getY() == move.getOldTile().getY() - 1) && (move.getNewTile().getX() == move.getOldTile().getX() + 2 || move.getNewTile().getX() == move.getOldTile().getX() - 2))) {
+			if(move.getNewTile().getPiece() == null) {
+				return true;
+			} else if(move.getNewTile().getPiece().isColor() == !this.isColor()) {
+				return true;
+			}
+		}
 		return false;
 	}
-
 }
