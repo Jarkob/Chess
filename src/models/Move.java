@@ -2,12 +2,13 @@ package models;
 
 public class Move
 {
-	public static Move create(Tile oldTile, Tile newTile) throws Exception {
+	public static Move create(Tile oldTile, Tile newTile) {
 		if(oldTile != newTile) {
 			return new Move(oldTile, newTile);
 		}
 		
-		throw new Exception("Tiles for a move have to be different.");
+		System.out.println("Tiles for a move have to be different.");
+		return null;
 	}
 	
 	public Move(Tile oldTile, Tile newTile) {
@@ -36,7 +37,7 @@ public class Move
 	}
 	
 	public boolean isLegal() {
-		return this.oldTile.getPiece() != null && this.newTile.getPiece().isColor() == !this.oldTile.getPiece().isColor();
+		return this.oldTile.getPiece() != null && (this.newTile.getPiece() == null || this.newTile.getPiece().isColor() == !this.oldTile.getPiece().isColor());
 	}
 	
 	public void execute() {

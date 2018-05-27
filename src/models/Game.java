@@ -59,28 +59,11 @@ public class Game
 		this.board.getTiles().get(new Tuple<Character, Integer>((char) 101, 1)).setPiece(
 				new King(this.board.getTiles().get(new Tuple<Character, Integer>((char) 101, 1)), true));
 		this.board.getTiles().get(new Tuple<Character, Integer>((char) 101, 8)).setPiece(
-				new King(this.board.getTiles().get(new Tuple<Character, Integer>((char) 101, 8)), true));
+				new King(this.board.getTiles().get(new Tuple<Character, Integer>((char) 101, 8)), false));
 	}
 	
 	public void run(String[] args) {
 		System.out.printf("Chess - by Jakob Bussas%n%n");
-		System.out.print("Loading");
-		try {
-			for(int i = 0; i < 4; i++) {
-				Thread.sleep(800);
-				System.out.print(".");
-			}
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.printf("%nStarting%n");
-		try {
-			Thread.sleep(400);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		Scanner sc = new Scanner(System.in);
 		boolean player = true;
@@ -108,19 +91,25 @@ public class Game
 								this.board.getTiles().get(new Tuple<Character, Integer>(inputChars[3], Character.getNumericValue(inputChars[4])))
 								);
 						
-						if(move.getOldTile().getPiece().isColor() != player) {
-							System.out.println("It is the turn of player " + (player ? "White" : "Black"));
-						} else {
-							// check if game is over
-							if(move.getNewTile().getPiece().getClass() == King.class) {
-								System.out.println("Player " + (player ? "White" : "Black") + " won!");
-								System.out.println("(Press enter to continue.)");
-								System.in.read();
-								sc.close();
-								return;
+						if(move != null) {
+							if(move.getOldTile().getPiece().isColor() != player) {
+								System.out.println("It is the turn of player " + (player ? "White" : "Black"));
+							} else {
+								if(move.getOldTile().getPiece().isMoveLegal(move)) {
+									// check if game is over
+									if(move.getNewTile().getPiece() != null && move.getNewTile().getPiece() instanceof King) {
+										System.out.println("Player " + (player ? "White" : "Black") + " won!");
+										System.out.println("(Press enter to continue.)");
+										System.in.read();
+										sc.close();
+										return;
+									}
+									move.execute();
+									break;
+								} else {
+									System.out.println("Invalid move: " + move);
+								}
 							}
-							move.execute();
-							break;
 						}
 					} catch (Exception e) {
 						System.out.println("Invalid move: " + move);
@@ -130,10 +119,7 @@ public class Game
 			}
 			
 			player ^= true;
-			break;
 		}
-		
-		sc.close();
 	}
 	
 	private int id;
