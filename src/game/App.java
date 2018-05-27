@@ -11,6 +11,7 @@ public class App
 		// rochade
 		// check mate
 		// move only legal if king isn't threatened afterwards
+		// kamikaze of the king needs to be illegal
 		
 		// primitive implementation: game ends when king is taken
 		Game testGame = new Game(1);

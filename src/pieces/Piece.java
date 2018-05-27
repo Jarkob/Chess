@@ -31,4 +31,10 @@ public abstract class Piece {
 	}
 	
 	public abstract boolean isMoveLegal(Move move);
+	
+	@Override
+	public String toString()
+	{
+		return (this.isColor() ? "w" : "b") + this.getClass().toString().split("\\.")[this.getClass().toString().split("\\.").length - 1].substring(0, 1);
+	}
 }

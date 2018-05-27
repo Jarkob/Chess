@@ -10,7 +10,8 @@ public class Board
 		boolean colorIndex = false;
 		for(int y = 1; y < 9; y++) {
 			for(int x = 97; x < 105; x++) {
-				this.tiles.put(new Tuple<Character, Integer>((char) x, y), new Tile((char) x, y, colorIndex)).setBoard(this);
+				this.tiles.put(new Tuple<Character, Integer>((char) x, y), new Tile((char) x, y, colorIndex));
+				this.tiles.get(new Tuple<Character, Integer>((char) x, y)).setBoard(this);
 				colorIndex ^= true;
 			}
 			colorIndex ^= true;
@@ -40,13 +41,14 @@ public class Board
 	@Override
 	public String toString()
 	{
-		String stringValue = "";
+		String stringValue = "   -----------------------%n";
 		for(int y = 8; y > 0; y--) {
+			stringValue += y + " |";
 			for(int x = 97; x < 105; x++) {
-				stringValue += this.getTiles().get(new Tuple<Character, Integer>((char) x, y));
+				stringValue += this.getTiles().get(new Tuple<Character, Integer>((char) x, y)) + "|";
 			}
-			stringValue += "%n";
+			stringValue += "%n   -----------------------%n";
 		}
-		return stringValue;
+		return stringValue += "    a  b  c  d  e  f  g  h";
 	}
 }

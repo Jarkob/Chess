@@ -70,11 +70,10 @@ public class Tile
         return other_.getX() == this.getX() && other_.getY() == this.getY();
     }
 	
-	// TODO: update for display of occupying piece
 	@Override
 	public String toString()
 	{
-		return this.color ? "W" : "B";
-//		return new String() + this.x + this.y;
+//		return this.color ? "W" : "B";
+		return this.getPiece() == null ? "  " : this.getPiece().toString();
 	}
 }
