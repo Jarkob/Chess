@@ -16,9 +16,7 @@ public class King extends Piece
 	{
 		if((Math.abs((int) move.getOldTile().getX() - (int) move.getNewTile().getX()) == 1) && (Math.abs(move.getOldTile().getY() - move.getNewTile().getY()) == 1)) {
 			// TODO: is tile threatened
-			if(move.getNewTile().getPiece() == null || move.getNewTile().getPiece().isColor() == !this.isColor()) {
-				return true;
-			}
+			return move.isLegal();
 		}
 		return false;
 	}

@@ -48,13 +48,7 @@ public class Bishop extends Piece {
 			}
 			
 			// take or not
-			if(this.tile.getBoard().getTiles().get(new Tuple<Character, Integer>(move.getNewTile().getX(), move.getNewTile().getY())).getPiece() == null) {
-				return true;
-			} else {
-				if(this.tile.getBoard().getTiles().get(new Tuple<Character, Integer>(move.getNewTile().getX(), move.getNewTile().getY())).getPiece().isColor() == !this.isColor()) {
-					return true;
-				}
-			}
+			return move.isLegal();
 		}
 		return false;
 	}

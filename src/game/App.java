@@ -15,6 +15,6 @@ public class App
 		
 		// primitive implementation: game ends when king is taken
 		Game testGame = new Game(1);
-		System.out.printf(testGame.getBoard().toString());
+		testGame.run(args);
 	}
 }

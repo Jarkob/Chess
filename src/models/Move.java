@@ -35,6 +35,10 @@ public class Move
 		this.newTile = newTile;
 	}
 	
+	public boolean isLegal() {
+		return this.oldTile.getPiece() != null && this.newTile.getPiece().isColor() == !this.oldTile.getPiece().isColor();
+	}
+	
 	public void execute() {
 		newTile.setPiece(oldTile.getPiece());
 		oldTile.setPiece(null);

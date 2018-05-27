@@ -24,7 +24,8 @@ public class Tuple<X, Y> {
             return false;
         }
 
-        Tuple<X,Y> other_ = (Tuple<X,Y>) other;
+        @SuppressWarnings("unchecked")
+		Tuple<X,Y> other_ = (Tuple<X,Y>) other;
 
         // this may cause NPE if nulls are valid values for x or y. The logic may be improved to handle nulls properly, if needed.
         return other_.first.equals(this.first) && other_.second.equals(this.second);

@@ -37,7 +37,7 @@ public class Rook extends Piece
 			}
 			
 			// take or not take
-			return move.getNewTile().getPiece() == null || move.getNewTile().getPiece().isColor() == !this.isColor();
+			return move.isLegal();
 		}
 		return false;
 	}
