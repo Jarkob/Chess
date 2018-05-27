@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Scanner;
+
 import pieces.Bishop;
 import pieces.King;
 import pieces.Knight;
@@ -61,9 +63,77 @@ public class Game
 	}
 	
 	public void run(String[] args) {
-		System.out.println("Started");
+		System.out.printf("Chess - by Jakob Bussas%n%n");
+		System.out.print("Loading");
+		try {
+			for(int i = 0; i < 4; i++) {
+				Thread.sleep(800);
+				System.out.print(".");
+			}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.printf("%nStarting%n");
+		try {
+			Thread.sleep(400);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		System.out.printf(this.getBoard().toString());
+		Scanner sc = new Scanner(System.in);
+		boolean player = true;
+		String input;
+		char[] inputChars;
+		Move move = null;
+		
+		while(true) {
+			// print board
+			System.out.printf("%n%n%n%n%n%n%n%n%n%n%n");
+			System.out.printf(this.getBoard().toString());
+			
+			// get move input
+			// while input is invalid
+			while(true) {
+				System.out.println((player ? "White" : "Black") + ": ");
+				input = sc.nextLine();
+				input = input.toLowerCase();
+				inputChars = input.toCharArray();
+				// check input
+				if(this.isInputValid(inputChars)) {
+					try {
+						move = Move.create(
+								this.board.getTiles().get(new Tuple<Character, Integer>(inputChars[0], Character.getNumericValue(inputChars[1]))),
+								this.board.getTiles().get(new Tuple<Character, Integer>(inputChars[3], Character.getNumericValue(inputChars[4])))
+								);
+						
+						if(move.getOldTile().getPiece().isColor() != player) {
+							System.out.println("It is the turn of player " + (player ? "White" : "Black"));
+						} else {
+							// check if game is over
+							if(move.getNewTile().getPiece().getClass() == King.class) {
+								System.out.println("Player " + (player ? "White" : "Black") + " won!");
+								System.out.println("(Press enter to continue.)");
+								System.in.read();
+								sc.close();
+								return;
+							}
+							move.execute();
+							break;
+						}
+					} catch (Exception e) {
+						System.out.println("Invalid move: " + move);
+						e.printStackTrace();
+					}
+				}
+			}
+			
+			player ^= true;
+			break;
+		}
+		
+		sc.close();
 	}
 	
 	private int id;
@@ -84,5 +154,33 @@ public class Game
 	public void setBoard(Board board)
 	{
 		this.board = board;
+	}
+	
+	public boolean isInputValid(char[] inputChars) {
+		if(inputChars.length != 5) {
+			System.out.println("Wrong input format, input needs to be 5 characters long.");
+			return false;
+		} else if((int) inputChars[0] < 97 || (int) inputChars[0] > 104) {
+			System.out.println("First input character needs to be a, b, c, d, e, f, g or h.");
+			return false;
+		} else if(Character.isDigit(inputChars[1]) && (Character.getNumericValue(inputChars[1]) < 1 || Character.getNumericValue(inputChars[1]) > 8)) {
+			System.out.println("Second input character needs to be a number between 1 and 8 (inclusive).");
+			return false;
+		} else if(inputChars[2] != ';') {
+			System.out.println("Third input character needs to be ;");
+			return false;
+		} else if((int) inputChars[3] < 97 || (int) inputChars[3] > 104) {
+			System.out.println("Forth input character needs to be a, b, c, d, e, f, g or h.");
+			return false;
+		} else if(Character.isDigit(inputChars[1]) && (Character.getNumericValue(inputChars[4]) < 1 || Character.getNumericValue(inputChars[4]) > 8)) {
+			System.out.println("Fifth input character needs to be a number between 1 and 8 (inclusive).");
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	public boolean isMoveValid(Move move) {
+		return true;
 	}
 }

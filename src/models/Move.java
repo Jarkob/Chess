@@ -43,4 +43,10 @@ public class Move
 		newTile.setPiece(oldTile.getPiece());
 		oldTile.setPiece(null);
 	}
+
+	@Override
+	public String toString()
+	{
+		return "Move [oldTile=" + oldTile.getX() + oldTile.getY() + ", newTile=" + newTile.getX() + newTile.getY() + "]";
+	}
 }

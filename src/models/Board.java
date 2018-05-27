@@ -49,6 +49,6 @@ public class Board
 			}
 			stringValue += "%n   -----------------------%n";
 		}
-		return stringValue += "    a  b  c  d  e  f  g  h";
+		return stringValue += "    a  b  c  d  e  f  g  h%n";
 	}
 }
