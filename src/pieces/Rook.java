@@ -4,12 +4,21 @@ import models.Move;
 import models.Tile;
 import models.Tuple;
 
+/**
+ * represents a rook
+ * @author jakobbussas
+ *
+ */
 public class Rook extends Piece
 {
+	/**
+	 * creates new rook
+	 * @param tile the tile on which the rook stands
+	 * @param color the color of the rook
+	 */
 	public Rook(Tile tile, boolean color)
 	{
 		super(tile, color);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

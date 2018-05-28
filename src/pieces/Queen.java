@@ -4,12 +4,21 @@ import models.Move;
 import models.Tile;
 import models.Tuple;
 
+/**
+ * represents a queen
+ * @author jakobbussas
+ *
+ */
 public class Queen extends Piece
 {
+	/**
+	 * creates new queen
+	 * @param tile the tile on which the queen stands
+	 * @param color the color of the queen
+	 */
 	public Queen(Tile tile, boolean color)
 	{
 		super(tile, color);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

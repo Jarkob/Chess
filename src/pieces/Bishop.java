@@ -4,12 +4,21 @@ import models.Move;
 import models.Tile;
 import models.Tuple;
 
-public class Bishop extends Piece {
-
+/**
+ * represents a bishop
+ * @author jakobbussas
+ *
+ */
+public class Bishop extends Piece
+{
+	/**
+	 * creates a new bishop
+	 * @param tile the tile on which the bishop stands
+	 * @param color the color of the bishop
+	 */
 	public Bishop(Tile tile, boolean color)
 	{
 		super(tile, color);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override

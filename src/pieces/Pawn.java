@@ -4,12 +4,21 @@ import models.Move;
 import models.Tile;
 import models.Tuple;
 
+/**
+ * represents a pawn
+ * @author jakobbussas
+ *
+ */
 public class Pawn extends Piece
 {
+	/**
+	 * creates a new pawn
+	 * @param tile the tile on which the pawn stands
+	 * @param color the color of the pawn
+	 */
 	public Pawn(Tile tile, boolean color)
 	{
 		super(tile, color);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

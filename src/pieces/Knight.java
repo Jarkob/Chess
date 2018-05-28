@@ -3,12 +3,21 @@ package pieces;
 import models.Move;
 import models.Tile;
 
+/**
+ * represents a knight
+ * @author jakobbussas
+ *
+ */
 public class Knight extends Piece
 {
+	/**
+	 * creates new knight
+	 * @param tile the tile on which the knight stands
+	 * @param color the color of the knight
+	 */
 	public Knight(Tile tile, boolean color)
 	{
 		super(tile, color);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
