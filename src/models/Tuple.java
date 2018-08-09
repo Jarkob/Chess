@@ -39,24 +39,44 @@ public class Tuple<X, Y> {
     }
 
 	/**
+	 * generates the hashcode of the instance
+	 * @return the hashcode
+	 */
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((first == null) ? 0 : first.hashCode());
+		result = prime * result + ((second == null) ? 0 : second.hashCode());
+		return result;
+	}
+
+	/**
 	 * checks if tuple is equal to
 	 * @param other
 	 * @return if tuples are equal by value/reference
 	 */
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof Tuple)){
-            return false;
-        }
-
-        @SuppressWarnings("unchecked")
-		Tuple<X,Y> other_ = (Tuple<X,Y>) other;
-
-        // this may cause NPE if nulls are valid values for x or y. The logic may be improved to handle nulls properly, if needed.
-        return other_.first.equals(this.first) && other_.second.equals(this.second);
-    }
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Tuple<?, ?> other = (Tuple<?, ?>) obj;
+		if (first == null) {
+			if (other.first != null)
+				return false;
+		} else if (!first.equals(other.first))
+			return false;
+		if (second == null) {
+			if (other.second != null)
+				return false;
+		} else if (!second.equals(other.second))
+			return false;
+		return true;
+	}
 }
