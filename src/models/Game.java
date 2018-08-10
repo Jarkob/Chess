@@ -2,6 +2,7 @@ package models;
 
 import java.util.Scanner;
 
+import game.UI;
 import pieces.Bishop;
 import pieces.King;
 import pieces.Knight;
@@ -23,6 +24,7 @@ public class Game
 	public Game(int id) {
 		this.id = id;
 		this.board = new Board(id);
+		
 		// fill board with pieces
 		// deploy pawns
 		for(int i = 97; i < 105; i++) {
@@ -68,6 +70,9 @@ public class Game
 				new King(this.board.getTiles().get(new Tuple<Character, Integer>((char) 101, 1)), true));
 		this.board.getTiles().get(new Tuple<Character, Integer>((char) 101, 8)).setPiece(
 				new King(this.board.getTiles().get(new Tuple<Character, Integer>((char) 101, 8)), false));
+		
+		// add board to ui test
+		UI ui = new UI(this, this.board);
 	}
 	
 	/**
@@ -135,10 +140,30 @@ public class Game
 		}
 	}
 	
+	private boolean player;
+	
 	private int id;
 
 	private Board board;
 
+	/**
+	 * get the player
+	 * @return the player
+	 */
+	public boolean getPlayer()
+	{
+		return this.player;
+	}
+	
+	/**
+	 * set the player
+	 * @param player the player
+	 */
+	public void setPlayer(boolean player)
+	{
+		this.player = player;
+	}
+	
 	/**
 	 * get the id
 	 * @return the id

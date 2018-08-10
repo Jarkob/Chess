@@ -53,19 +53,11 @@ public class Pawn extends Piece
 		}
 		// take
 		// TODO en passant
-		else if(((int) move.getNewTile().getX()) == ((int) move.getOldTile().getX() + 1) || ((int) move.getNewTile().getX() == (int) move.getOldTile().getX() - 1)) {
+		else if((((int) move.getNewTile().getX()) == ((int) move.getOldTile().getX() + 1) || ((int) move.getNewTile().getX() == (int) move.getOldTile().getX() - 1)) && move.getNewTile().getPiece() != null) {
 			// check direction of movement
-			if(this.isColor()) {
-				if(move.getNewTile().getY() - move.getOldTile().getY() == 1) {
-					if(!this.tile.getBoard().getTiles().get(new Tuple<Character, Integer>(move.getNewTile().getX(), move.getNewTile().getY())).getPiece().isColor()) {
-						return true;
-					}
-				}
-			} else {
-				if(move.getOldTile().getY() - move.getNewTile().getY() == 1) {
-					if(this.tile.getBoard().getTiles().get(new Tuple<Character, Integer>(move.getNewTile().getX(), move.getNewTile().getY())).getPiece().isColor()) {
-						return true;
-					}
+			if(Math.abs(move.getOldTile().getY() - move.getNewTile().getY()) == 1) {
+				if(this.tile.getBoard().getTiles().get(new Tuple<Character, Integer>(move.getNewTile().getX(), move.getNewTile().getY())).getPiece().isColor() != this.isColor()) {
+					return true;
 				}
 			}
 		}
