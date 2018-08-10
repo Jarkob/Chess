@@ -85,6 +85,10 @@ public class Move
 	public void execute() {
 		newTile.setPiece(oldTile.getPiece());
 		oldTile.setPiece(null);
+		
+		// update UI
+		newTile.updateButton();
+		oldTile.updateButton();
 	}
 
 	/**

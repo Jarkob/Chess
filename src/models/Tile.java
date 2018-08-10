@@ -1,5 +1,7 @@
 package models;
 
+import javax.swing.JButton;
+
 import pieces.Piece;
 
 /**
@@ -26,6 +28,7 @@ public class Tile
 	private boolean color;
 	private Board board;
 	private Piece piece;
+	private JButton button;
 	
 	/**
 	 * get x coordinate
@@ -113,6 +116,35 @@ public class Tile
 	public void setPiece(Piece piece)
 	{
 		this.piece = piece;
+	}
+	
+	/**
+	 * get the button
+	 * @return the button
+	 */
+	public JButton getButton()
+	{
+		return this.button;
+	}
+	
+	/**
+	 * set the button
+	 * @param button the button
+	 */
+	public void setButton(JButton button)
+	{
+		this.button = button;
+	}
+	
+	/**
+	 * updates the button after moves
+	 */
+	public void updateButton() {
+		if(this.piece != null) {
+			this.button.setText(this.piece.toString());
+		} else {
+			this.button.setText("");
+		}
 	}
 	
 	/**
