@@ -68,7 +68,11 @@ public class UIButtonHandler implements ActionListener
 			UI.from = null;
 			UI.to = null;
 		} else {
-			UI.from = this.ui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y));
+			if(this.ui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y)).getPiece() != null) {
+				UI.from = this.ui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y));
+			} else {
+				System.out.println("Please select a piece to move");
+			}
 		}
     }
 }
