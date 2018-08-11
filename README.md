@@ -10,3 +10,6 @@ Functions that are not yet implemented:
 - check-mate when the king is inevitable threatened
 
 Currently the game ends when one player takes the enemy king.
+
+Also has a non optional UI.
+Icons made by [Freepik](www.freepik.com) from [www.flaticon.com](www.flaticon.com)
