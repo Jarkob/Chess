@@ -1,7 +1,11 @@
 package models;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import game.IconMapper;
 import pieces.Piece;
 
 /**
@@ -141,10 +145,16 @@ public class Tile
 	 */
 	public void updateButton() {
 		if(this.piece != null) {
-			this.button.setText(this.piece.toString());
+			// TODO: resizing shouldn't be necessary
+			ImageIcon icon = new ImageIcon("resources/" + IconMapper.pieceToIcon(this.piece));
+			Image image = icon.getImage();
+			Image newImage = image.getScaledInstance(40,  40, Image.SCALE_SMOOTH);
+			icon = new ImageIcon(newImage);
+			button.setIcon(icon);
 		} else {
-			this.button.setText("");
+			this.button.setIcon(null);
 		}
+		this.button.repaint();
 	}
 	
 	/**

@@ -18,7 +18,7 @@ import models.Tuple;
 /**
  * class for user interface
  * @author jakobbussas
- *
+ * Icons made by Freepik[www.freepik.com] from www.flaticon.com 
  */
 public class UI
 {
@@ -45,8 +45,10 @@ public class UI
 				
 				// add button logic
 				board.getTiles().get(new Tuple<Character, Integer>((char) x, y)).setButton(button);
-				button.setText(board.getTiles().get(new Tuple<Character, Integer>((char) x, y)).getPiece() != null
-						? board.getTiles().get(new Tuple<Character, Integer>((char) x, y)).getPiece().toString() : "");
+				
+				board.getTiles().get(new Tuple<Character, Integer>((char) x, y)).updateButton();
+//				button.setText(board.getTiles().get(new Tuple<Character, Integer>((char) x, y)).getPiece() != null
+//						? board.getTiles().get(new Tuple<Character, Integer>((char) x, y)).getPiece().toString() : "");
 				
 				button.addActionListener(new UIButtonHandler(this, (char) x, y));
 				

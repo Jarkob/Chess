@@ -73,6 +73,11 @@ public class UIButtonHandler implements ActionListener
 	 * saves two clicked tiles, stores them and tries to perform a move
 	 */
 	public void actionPerformed(ActionEvent e) {
+		// debug
+		if(this.ui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y)).getPiece() != null) {
+			System.out.println(IconMapper.pieceToIcon(this.ui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y)).getPiece()));
+		}
+		
 		if(UI.from != null) {
 			UI.to = this.ui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y));
 			// check if move is valid
