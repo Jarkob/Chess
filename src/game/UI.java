@@ -22,15 +22,19 @@ import models.Tuple;
  */
 public class UI
 {
+	/**
+	 * creates a new UI instance
+	 * @param game the game
+	 * @param board the board of the game
+	 */
 	public UI(Game game, Board board) {
 		this.game = game;
-		
 		this.board = board;
-		
 		this.frame = new JFrame();
-		
 		JLabel label;
 		boolean color = false;
+		
+		// add buttons and labels to ui
 		for(int y = 8; y > 0; y--) {
 			label = new JLabel("" + y);
 			this.frame.add(label);
@@ -60,6 +64,7 @@ public class UI
 			frame.add(label);
 		}
 		
+		// configurate frame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(500, 500);
 		frame.setLayout(new GridLayout(9, 9));
