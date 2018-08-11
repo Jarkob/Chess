@@ -84,7 +84,7 @@ public class Game
 		System.out.printf("Chess - by Jakob Bussas%n%n");
 		
 		Scanner sc = new Scanner(System.in);
-		boolean player = true;
+		this.player = true;
 		String input;
 		char[] inputChars;
 		Move move = null;
