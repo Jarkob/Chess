@@ -41,15 +41,12 @@ public class UI
 			for(int x = 97; x < 105; x++) {
 				JButton button = new JButton();
 				button.setBackground(color ? Color.BLACK : Color.WHITE);
+				button.setBorderPainted(false);
 				button.setOpaque(true);
 				
 				// add button logic
 				board.getTiles().get(new Tuple<Character, Integer>((char) x, y)).setButton(button);
-				
 				board.getTiles().get(new Tuple<Character, Integer>((char) x, y)).updateButton();
-//				button.setText(board.getTiles().get(new Tuple<Character, Integer>((char) x, y)).getPiece() != null
-//						? board.getTiles().get(new Tuple<Character, Integer>((char) x, y)).getPiece().toString() : "");
-				
 				button.addActionListener(new UIButtonHandler(this, (char) x, y));
 				
 				frame.add(button);
