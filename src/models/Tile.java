@@ -146,7 +146,8 @@ public class Tile
 	public void updateButton() {
 		if(this.piece != null) {
 			// TODO: resizing shouldn't be necessary
-			ImageIcon icon = new ImageIcon("resources/" + IconMapper.pieceToIcon(this.piece));
+			ImageIcon icon = new ImageIcon(
+					Tile.class.getResource("/" + IconMapper.pieceToIcon(this.piece)));
 			Image image = icon.getImage();
 			Image newImage = image.getScaledInstance(40,  40, Image.SCALE_SMOOTH);
 			icon = new ImageIcon(newImage);

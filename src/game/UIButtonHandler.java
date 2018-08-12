@@ -3,7 +3,6 @@ package game;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -29,7 +28,7 @@ public class UIButtonHandler implements ActionListener
 		this.x = x;
 		this.y = y;
 		
-		this.icon = new ImageIcon("resources/chess-board.png");
+		this.icon = new ImageIcon(UIButtonHandler.class.getResource("/chess-board.png"));
 		Image image = this.icon.getImage();
 		image = image.getScaledInstance(40,  40, Image.SCALE_SMOOTH);
 		this.icon = new ImageIcon(image);
