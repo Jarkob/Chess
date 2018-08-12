@@ -40,7 +40,7 @@ public class UI
 			this.frame.add(label);
 			for(int x = 97; x < 105; x++) {
 				JButton button = new JButton();
-				button.setBackground(color ? Color.BLACK : Color.WHITE);
+				button.setBackground(color ? new Color(64, 64, 64) : new Color(192, 192, 192));
 				button.setBorderPainted(false);
 				button.setOpaque(true);
 				
