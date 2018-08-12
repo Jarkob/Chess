@@ -1,6 +1,6 @@
 # Chess
 Java Chess
-A command line rudimental chess game implemented with java.
+A rudimental chess game implemented with java.
 
 Functions that are not yet implemented:
 - rochade
@@ -11,5 +11,11 @@ Functions that are not yet implemented:
 
 Currently the game ends when one player takes the enemy king.
 
-Also has a non optional UI.
+The program supports both gui and cli usage, default is gui.
+To enable cli run:
+```bash
+java -jar ChessJAR.jar cli
+```
+
+
 Icons made by [Freepik](www.freepik.com) from [www.flaticon.com](www.flaticon.com)
