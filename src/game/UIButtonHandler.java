@@ -1,7 +1,11 @@
 package game;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 import models.Move;
 import models.Tuple;
@@ -24,9 +28,15 @@ public class UIButtonHandler implements ActionListener
 		this.ui = ui;
 		this.x = x;
 		this.y = y;
+		
+		this.icon = new ImageIcon("resources/chess-board.png");
+		Image image = this.icon.getImage();
+		image = image.getScaledInstance(40,  40, Image.SCALE_SMOOTH);
+		this.icon = new ImageIcon(image);
 	}
 	
 	private UI ui;
+	private ImageIcon icon;
 	
 	// coordinates are only needed for actionPerformed method
 	private char x;
@@ -73,43 +83,64 @@ public class UIButtonHandler implements ActionListener
 	 * saves two clicked tiles, stores them and tries to perform a move
 	 */
 	public void actionPerformed(ActionEvent e) {
-		// debug
-		if(this.ui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y)).getPiece() != null) {
-			System.out.println(IconMapper.pieceToIcon(this.ui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y)).getPiece()));
-		}
-		
-		if(UI.from != null) {
-			UI.to = this.ui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y));
-			// check if move is valid
-			Move move = Move.create(UI.from, UI.to);
-			
-			if(move != null) {
-				if(move.getOldTile().getPiece().isColor() != this.ui.game.getPlayer()) {
-					System.out.println("It is the turn of player " + (this.ui.game.getPlayer() ? "White" : "Black"));
-				} else {
-					if(move.getOldTile().getPiece().isMoveLegal(move)) {
-						// check if game is over
-						if(move.getNewTile().getPiece() != null && move.getNewTile().getPiece() instanceof King) {
-							System.out.println("Player " + (this.ui.game.getPlayer() ? "White" : "Black") + " won!");
-							System.out.println("(Press enter to continue.)");
-						}
-						move.execute();
-						this.ui.game.setPlayer(!this.ui.game.getPlayer());
+		if(!this.ui.isFrozen()) {
+			if(this.ui.getFrom() != null) {
+				this.ui.setTo(this.ui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y)));
+				// check if move is valid
+				Move move = Move.create(this.ui.getFrom(), this.ui.getTo());
+				
+				if(move != null) {
+					if(move.getOldTile().getPiece().isColor() != this.ui.isPlayer()) {
+						// show error in gui
+						JOptionPane.showOptionDialog(
+								this.ui.getFrame(),
+								"It is the turn of player " + (this.ui.isPlayer() ? "White" : "Black"), "Wrong player",
+								JOptionPane.PLAIN_MESSAGE, JOptionPane.QUESTION_MESSAGE, this.icon,
+								new Object[] {"OK"}, "OK");
 					} else {
-						UI.to = null;
-						System.out.println("Invalid move: " + move);
+						if(move.getOldTile().getPiece().isMoveLegal(move)) {
+							// check if game is over
+							if(move.getNewTile().getPiece() != null && move.getNewTile().getPiece() instanceof King) {
+								this.ui.freeze();
+								// show win message in gui
+								JOptionPane.showOptionDialog(
+										this.ui.getFrame(),
+						                "Player " + (this.ui.isPlayer() ? "White" : "Black") + " won!", "Game over",
+						                JOptionPane.PLAIN_MESSAGE, JOptionPane.QUESTION_MESSAGE, this.icon,
+						                new Object[] {"OK"}, "OK");
+							}
+							move.execute();
+							this.ui.setPlayer(!this.ui.isPlayer());
+						} else {
+							this.ui.setTo(null);
+							// show error in gui
+							JOptionPane.showOptionDialog(
+									this.ui.getFrame(),
+									move, "Invalid move",
+									JOptionPane.ERROR_MESSAGE, JOptionPane.QUESTION_MESSAGE, this.icon,
+									new Object[] {"OK"}, "OK");
+						}
 					}
+				} else {
+					JOptionPane.showOptionDialog(
+							this.ui.getFrame(),
+							"Move = null", "Error",
+							JOptionPane.ERROR_MESSAGE, JOptionPane.QUESTION_MESSAGE, this.icon,
+							new Object[] {"OK"}, "OK");
 				}
+				this.ui.setFrom(null);
+				this.ui.setTo(null);
 			} else {
-				System.out.println("Move = null");
-			}
-			UI.from = null;
-			UI.to = null;
-		} else {
-			if(this.ui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y)).getPiece() != null) {
-				UI.from = this.ui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y));
-			} else {
-				System.out.println("Please select a piece to move");
+				if(this.ui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y)).getPiece() != null) {
+					this.ui.setFrom(this.ui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y)));
+				} else {
+					
+					JOptionPane.showOptionDialog(
+							this.ui.getFrame(),
+							"Please select a piece to move", "Error",
+							JOptionPane.ERROR_MESSAGE, JOptionPane.QUESTION_MESSAGE, this.icon,
+							new Object[] {"OK"}, "OK");
+				}
 			}
 		}
     }
