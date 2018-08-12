@@ -1,7 +1,5 @@
 package models;
 
-import java.util.Scanner;
-
 import game.CLI;
 import game.UI;
 import pieces.Bishop;
@@ -85,8 +83,10 @@ public class Game
 		}
 		if(args[0].equals("gui")) {
 			UI ui = new UI(this.board);
+			ui.run(args);
 		} else if(args[0].equals("cli")) {
 			CLI cli = new CLI(this.board);
+			cli.run(args);
 		} else {
 			System.out.println("Unknown interface type: " + args[0]);
 			System.out.println("Currently only gui and cli available");

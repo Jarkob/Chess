@@ -2,16 +2,10 @@ package game;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.util.Hashtable;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import models.Board;
-import models.Game;
 import models.Tile;
 import models.Tuple;
 
@@ -63,11 +57,18 @@ public class UI
 			frame.add(label);
 		}
 		
-		// configurate frame
+		// configure frame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(500, 500);
 		frame.setLayout(new GridLayout(9, 9));
-		frame.setVisible(true);
+	}
+	
+	/**
+	 * runs the game
+	 * @param args run arguments (currently unused)
+	 */
+	public void run(String[] args) {
+		this.frame.setVisible(true);
 	}
 	
 	private Board board;
