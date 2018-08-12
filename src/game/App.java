@@ -11,10 +11,18 @@ public class App
 {
 	/**
 	 * launches the program
-	 * @param args runtime arguments (currently unused)
+	 * by default launches with a graphical user interface
+	 * @param args first argument is the type of the interface (optional)
 	 */
 	public static void main(String[] args) {
-		Game testGame = new Game(1);
-		testGame.run(args);
+		Game game = new Game(1);
+		if(args.length == 0) {
+			game.run(new String[] {"gui"});
+		} else if(args.length == 1) {
+			game.run(args);
+		} else {
+			System.out.println("Invalid number of command line arguments, only <= 1 arguments accepted");
+			return;
+		}
 	}
 }
