@@ -78,47 +78,100 @@ public class UI
 	private Tile to;
 	private boolean player;
 	
+	/**
+	 * get the board
+	 * @return the board
+	 */
 	public Board getBoard()
 	{
 		return board;
 	}
+	
+	/**
+	 * set the board
+	 * @param board the board
+	 */
 	public void setBoard(Board board)
 	{
 		this.board = board;
 	}
+	
+	/**
+	 * get the first tile of the move
+	 * @return the first tile of the move
+	 */
 	public Tile getFrom()
 	{
 		return from;
 	}
+	
+	/**
+	 * set the first tile of the move
+	 * @param from the first tile of the move
+	 */
 	public void setFrom(Tile from)
 	{
 		this.from = from;
 	}
+	
+	/**
+	 * get the second tile of the move
+	 * @return the second tile of the move
+	 */
 	public Tile getTo()
 	{
 		return to;
 	}
+	
+	/**
+	 * set the second tile of the move
+	 * @param to the second tile of the move
+	 */
 	public void setTo(Tile to)
 	{
 		this.to = to;
 	}
+	
+	/**
+	 * get the current player
+	 * @return true: white, false: black
+	 */
 	public boolean isPlayer()
 	{
 		return player;
 	}
+	
+	/**
+	 * set the current player
+	 * @param player true: white, false: black
+	 */
 	public void setPlayer(boolean player)
 	{
 		this.player = player;
 	}
+	
+	/**
+	 * get the frame
+	 * @return the frame
+	 */
 	public JFrame getFrame()
 	{
 		return frame;
 	}
+	
+	/**
+	 * set the frame
+	 * @param frame the frame
+	 */
 	public void setFrame(JFrame frame)
 	{
 		this.frame = frame;
 	}
 	
+	/**
+	 * get if the ui is frozen
+	 * @return if the ui is frozen
+	 */
 	public boolean isFrozen() {
 		return this.frozen;
 	}
