@@ -5,6 +5,8 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
 import models.Board;
 import models.Tile;
 import models.Tuple;
@@ -17,7 +19,7 @@ import models.Tuple;
 public class GUI
 {
 	/**
-	 * creates a new UI instance
+	 * creates a new GUI instance
 	 * @param board the board of the game
 	 */
 	public GUI(Board board) {
@@ -26,14 +28,15 @@ public class GUI
 		this.player = true;
 		this.frame = new JFrame();
 		JLabel label;
+		JButton button;
 		boolean color = false;
 		
-		// add buttons and labels to ui
+		// add buttons and labels to gui
 		for(int y = 8; y > 0; y--) {
-			label = new JLabel("" + y);
+			label = new JLabel("" + y, SwingConstants.CENTER);
 			this.frame.add(label);
 			for(int x = 97; x < 105; x++) {
-				JButton button = new JButton();
+				button = new JButton();
 				button.setBackground(color ? new Color(64, 64, 64) : new Color(192, 192, 192));
 				button.setBorderPainted(false);
 				button.setOpaque(true);
@@ -49,11 +52,24 @@ public class GUI
 			color ^= true;
 		}
 		
-		label = new JLabel();
-		frame.add(label);
+		// configure reset button
+		button = new JButton();
+		button.setText("Reset");
+		button.addActionListener(e -> {
+			// reset game
+			this.frozen = true;
+			this.player = true;
+			this.board.empty();
+			this.board.fill();
+			this.board.getTiles().forEach((key, val) -> {
+				val.updateButton();
+			});
+			this.frozen = false;
+		});
+		frame.add(button);
 		
 		for(int x = 97; x < 105; x++) {
-			label = new JLabel("" + (char) x);
+			label = new JLabel("" + (char) x, SwingConstants.CENTER);
 			frame.add(label);
 		}
 		
