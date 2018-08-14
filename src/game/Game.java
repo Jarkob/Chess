@@ -1,13 +1,15 @@
-package models;
+package game;
 
-import game.CLI;
-import game.UI;
+import models.Board;
+import models.Tuple;
 import pieces.Bishop;
 import pieces.King;
 import pieces.Knight;
 import pieces.Pawn;
 import pieces.Queen;
 import pieces.Rook;
+import ui.CLI;
+import ui.GUI;
 
 /**
  * class represents one game between two players
@@ -82,7 +84,7 @@ public class Game
 			return;
 		}
 		if(args[0].equals("gui")) {
-			UI ui = new UI(this.board);
+			GUI ui = new GUI(this.board);
 			ui.run(args);
 		} else if(args[0].equals("cli")) {
 			CLI cli = new CLI(this.board);

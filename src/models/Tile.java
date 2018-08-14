@@ -5,8 +5,8 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import game.IconMapper;
 import pieces.Piece;
+import ui.IconMapper;
 
 /**
  * represents a single tile on a board

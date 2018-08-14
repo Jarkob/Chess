@@ -1,4 +1,4 @@
-package game;
+package ui;
 
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -15,7 +15,7 @@ import pieces.King;
  * @author jakobbussas
  *
  */
-public class UIButtonHandler implements ActionListener
+public class GUIButtonHandler implements ActionListener
 {
 	/**
 	 * creates new UIButtonHandler instance
@@ -23,18 +23,18 @@ public class UIButtonHandler implements ActionListener
 	 * @param x the x coordinate of the button
 	 * @param y the y coordinate of the button
 	 */
-	public UIButtonHandler(UI ui, char x, int y) {
+	public GUIButtonHandler(GUI ui, char x, int y) {
 		this.ui = ui;
 		this.x = x;
 		this.y = y;
 		
-		this.icon = new ImageIcon(UIButtonHandler.class.getResource("/chess-board.png"));
+		this.icon = new ImageIcon(GUIButtonHandler.class.getResource("/chess-board.png"));
 		Image image = this.icon.getImage();
 		image = image.getScaledInstance(40,  40, Image.SCALE_SMOOTH);
 		this.icon = new ImageIcon(image);
 	}
 	
-	private UI ui;
+	private GUI ui;
 	private ImageIcon icon;
 	
 	// coordinates are only needed for actionPerformed method

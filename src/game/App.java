@@ -1,7 +1,5 @@
 package game;
 
-import models.Game;
-
 /**
  * main class from which the program launches
  * @author jakobbussas

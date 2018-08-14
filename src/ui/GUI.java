@@ -1,4 +1,4 @@
-package game;
+package ui;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -14,13 +14,13 @@ import models.Tuple;
  * @author jakobbussas
  * 
  */
-public class UI
+public class GUI
 {
 	/**
 	 * creates a new UI instance
 	 * @param board the board of the game
 	 */
-	public UI(Board board) {
+	public GUI(Board board) {
 		this.frozen = false;
 		this.board = board;
 		this.player = true;
@@ -41,7 +41,7 @@ public class UI
 				// add button logic
 				board.getTiles().get(new Tuple<Character, Integer>((char) x, y)).setButton(button);
 				board.getTiles().get(new Tuple<Character, Integer>((char) x, y)).updateButton();
-				button.addActionListener(new UIButtonHandler(this, (char) x, y));
+				button.addActionListener(new GUIButtonHandler(this, (char) x, y));
 				
 				frame.add(button);
 				color ^= true;
