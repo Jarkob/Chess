@@ -18,13 +18,13 @@ import pieces.King;
 public class GUIButtonHandler implements ActionListener
 {
 	/**
-	 * creates new UIButtonHandler instance
-	 * @param ui reference to the ui it belongs to
+	 * creates new GUIButtonHandler instance
+	 * @param gui reference to the gui it belongs to
 	 * @param x the x coordinate of the button
 	 * @param y the y coordinate of the button
 	 */
-	public GUIButtonHandler(GUI ui, char x, int y) {
-		this.ui = ui;
+	public GUIButtonHandler(GUI gui, char x, int y) {
+		this.gui = gui;
 		this.x = x;
 		this.y = y;
 		
@@ -34,7 +34,7 @@ public class GUIButtonHandler implements ActionListener
 		this.icon = new ImageIcon(image);
 	}
 	
-	private GUI ui;
+	private GUI gui;
 	private ImageIcon icon;
 	
 	// coordinates are only needed for actionPerformed method
@@ -82,39 +82,39 @@ public class GUIButtonHandler implements ActionListener
 	 * saves two clicked tiles, stores them and tries to perform a move
 	 */
 	public void actionPerformed(ActionEvent e) {
-		if(!this.ui.isFrozen()) {
-			if(this.ui.getFrom() != null) {
-				this.ui.setTo(this.ui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y)));
+		if(!this.gui.isFrozen()) {
+			if(this.gui.getFrom() != null) {
+				this.gui.setTo(this.gui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y)));
 				// check if move is valid
-				Move move = Move.create(this.ui.getFrom(), this.ui.getTo());
+				Move move = Move.create(this.gui.getFrom(), this.gui.getTo());
 				
 				if(move != null) {
-					if(move.getOldTile().getPiece().isColor() != this.ui.isPlayer()) {
+					if(move.getOldTile().getPiece().isColor() != this.gui.isPlayer()) {
 						// show error in gui
 						JOptionPane.showOptionDialog(
-								this.ui.getFrame(),
-								"It is the turn of player " + (this.ui.isPlayer() ? "White" : "Black"), "Wrong player",
+								this.gui.getFrame(),
+								"It is the turn of player " + (this.gui.isPlayer() ? "White" : "Black"), "Wrong player",
 								JOptionPane.PLAIN_MESSAGE, JOptionPane.QUESTION_MESSAGE, this.icon,
 								new Object[] {"OK"}, "OK");
 					} else {
 						if(move.getOldTile().getPiece().isMoveLegal(move)) {
 							// check if game is over
 							if(move.getNewTile().getPiece() != null && move.getNewTile().getPiece() instanceof King) {
-								this.ui.freeze();
+								this.gui.freeze();
 								// show win message in gui
 								JOptionPane.showOptionDialog(
-										this.ui.getFrame(),
-						                "Player " + (this.ui.isPlayer() ? "White" : "Black") + " won!", "Game over",
+										this.gui.getFrame(),
+						                "Player " + (this.gui.isPlayer() ? "White" : "Black") + " won!", "Game over",
 						                JOptionPane.PLAIN_MESSAGE, JOptionPane.QUESTION_MESSAGE, this.icon,
 						                new Object[] {"OK"}, "OK");
 							}
 							move.execute();
-							this.ui.setPlayer(!this.ui.isPlayer());
+							this.gui.setPlayer(!this.gui.isPlayer());
 						} else {
-							this.ui.setTo(null);
+							this.gui.setTo(null);
 							// show error in gui
 							JOptionPane.showOptionDialog(
-									this.ui.getFrame(),
+									this.gui.getFrame(),
 									move, "Invalid move",
 									JOptionPane.ERROR_MESSAGE, JOptionPane.QUESTION_MESSAGE, this.icon,
 									new Object[] {"OK"}, "OK");
@@ -122,20 +122,20 @@ public class GUIButtonHandler implements ActionListener
 					}
 				} else {
 					JOptionPane.showOptionDialog(
-							this.ui.getFrame(),
+							this.gui.getFrame(),
 							"Move = null", "Error",
 							JOptionPane.ERROR_MESSAGE, JOptionPane.QUESTION_MESSAGE, this.icon,
 							new Object[] {"OK"}, "OK");
 				}
-				this.ui.setFrom(null);
-				this.ui.setTo(null);
+				this.gui.setFrom(null);
+				this.gui.setTo(null);
 			} else {
-				if(this.ui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y)).getPiece() != null) {
-					this.ui.setFrom(this.ui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y)));
+				if(this.gui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y)).getPiece() != null) {
+					this.gui.setFrom(this.gui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y)));
 				} else {
 					
 					JOptionPane.showOptionDialog(
-							this.ui.getFrame(),
+							this.gui.getFrame(),
 							"Please select a piece to move", "Error",
 							JOptionPane.ERROR_MESSAGE, JOptionPane.QUESTION_MESSAGE, this.icon,
 							new Object[] {"OK"}, "OK");
