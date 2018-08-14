@@ -2,6 +2,13 @@ package models;
 
 import java.util.Hashtable;
 
+import pieces.Bishop;
+import pieces.King;
+import pieces.Knight;
+import pieces.Pawn;
+import pieces.Queen;
+import pieces.Rook;
+
 /**
  * represents a chess board
  * @author jakobbussas
@@ -24,6 +31,67 @@ public class Board
 				colorIndex ^= true;
 			}
 			colorIndex ^= true;
+		}
+	}
+	
+	/**
+	 * fills board with pieces
+	 */
+	public void fill() {
+		// deploy pawns
+		for(int i = 97; i < 105; i++) {
+			this.tiles.get(new Tuple<Character, Integer>((char) i, 2)).setPiece(
+					new Pawn(this.tiles.get(new Tuple<Character, Integer>((char) i, 2)), true));
+			this.tiles.get(new Tuple<Character, Integer>((char) i, 7)).setPiece(
+					new Pawn(this.tiles.get(new Tuple<Character, Integer>((char) i, 7)), false));
+		}
+		// deploy rooks
+		this.tiles.get(new Tuple<Character, Integer>((char) 97, 1)).setPiece(
+				new Rook(this.tiles.get(new Tuple<Character, Integer>((char) 97, 1)), true));
+		this.tiles.get(new Tuple<Character, Integer>((char) 104, 1)).setPiece(
+				new Rook(this.tiles.get(new Tuple<Character, Integer>((char) 104, 1)), true));
+		this.tiles.get(new Tuple<Character, Integer>((char) 97, 8)).setPiece(
+				new Rook(this.tiles.get(new Tuple<Character, Integer>((char) 97, 8)), false));
+		this.tiles.get(new Tuple<Character, Integer>((char) 104, 8)).setPiece(
+				new Rook(this.tiles.get(new Tuple<Character, Integer>((char) 104, 8)), false));
+		// deploy knights
+		this.tiles.get(new Tuple<Character, Integer>((char) 98, 1)).setPiece(
+				new Knight(this.tiles.get(new Tuple<Character, Integer>((char) 98, 1)), true));
+		this.tiles.get(new Tuple<Character, Integer>((char) 103, 1)).setPiece(
+				new Knight(this.tiles.get(new Tuple<Character, Integer>((char) 103, 1)), true));
+		this.tiles.get(new Tuple<Character, Integer>((char) 98, 8)).setPiece(
+				new Knight(this.tiles.get(new Tuple<Character, Integer>((char) 98, 8)), false));
+		this.tiles.get(new Tuple<Character, Integer>((char) 103, 8)).setPiece(
+				new Knight(this.tiles.get(new Tuple<Character, Integer>((char) 103, 8)), false));
+		// deploy bishops
+		this.tiles.get(new Tuple<Character, Integer>((char) 99, 1)).setPiece(
+				new Bishop(this.tiles.get(new Tuple<Character, Integer>((char) 99, 1)), true));
+		this.tiles.get(new Tuple<Character, Integer>((char) 102, 1)).setPiece(
+				new Bishop(this.tiles.get(new Tuple<Character, Integer>((char) 102, 1)), true));
+		this.tiles.get(new Tuple<Character, Integer>((char) 99, 8)).setPiece(
+				new Bishop(this.tiles.get(new Tuple<Character, Integer>((char) 99, 8)), false));
+		this.tiles.get(new Tuple<Character, Integer>((char) 102, 8)).setPiece(
+				new Bishop(this.tiles.get(new Tuple<Character, Integer>((char) 102, 8)), false));
+		// deploy queens
+		this.tiles.get(new Tuple<Character, Integer>((char) 100, 1)).setPiece(
+				new Queen(this.tiles.get(new Tuple<Character, Integer>((char) 100, 1)), true));
+		this.tiles.get(new Tuple<Character, Integer>((char) 100, 8)).setPiece(
+				new Queen(this.tiles.get(new Tuple<Character, Integer>((char) 100, 8)), false));
+		// deploy kings
+		this.tiles.get(new Tuple<Character, Integer>((char) 101, 1)).setPiece(
+				new King(this.tiles.get(new Tuple<Character, Integer>((char) 101, 1)), true));
+		this.tiles.get(new Tuple<Character, Integer>((char) 101, 8)).setPiece(
+				new King(this.tiles.get(new Tuple<Character, Integer>((char) 101, 8)), false));
+	}
+	
+	/**
+	 * empties board
+	 */
+	public void empty() {
+		for(int y = 1; y < 9; y++) {
+			for(int x = 97; x < 105; x++) {
+				this.tiles.get(new Tuple<Character, Integer>((char) x, y)).setPiece(null);
+			}
 		}
 	}
 	
