@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -127,13 +128,21 @@ public class GUIButtonHandler implements ActionListener
 							JOptionPane.ERROR_MESSAGE, JOptionPane.QUESTION_MESSAGE, this.icon,
 							new Object[] {"OK"}, "OK");
 				}
+				// reset from and to
+				this.gui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.gui.getFrom().getX(), this.gui.getFrom().getY())).updateButton();
 				this.gui.setFrom(null);
 				this.gui.setTo(null);
 			} else {
 				if(this.gui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y)).getPiece() != null) {
 					this.gui.setFrom(this.gui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y)));
+					// highlight tile
+					if(this.gui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y)).isColor()) {
+						this.gui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y)).getButton().setBackground(new Color(145, 145, 255));
+					} else {
+						this.gui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y)).getButton().setBackground(new Color(55, 55, 145));
+					}
+					this.gui.getBoard().getTiles().get(new Tuple<Character, Integer>(this.x, this.y)).getButton().repaint();
 				} else {
-					
 					JOptionPane.showOptionDialog(
 							this.gui.getFrame(),
 							"Please select a piece to move", "Error",

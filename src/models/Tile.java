@@ -1,5 +1,6 @@
 package models;
 
+import java.awt.Color;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
@@ -155,6 +156,8 @@ public class Tile
 		} else {
 			this.button.setIcon(null);
 		}
+		// reset color
+		this.button.setBackground(color ? new Color(64, 64, 64) : new Color(192, 192, 192));
 		this.button.repaint();
 	}
 	
