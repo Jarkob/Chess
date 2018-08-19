@@ -71,6 +71,8 @@ public class CLI
 										return;
 									}
 									move.execute();
+									// check if promotion
+									// TODO
 									break;
 								} else {
 									System.out.println("Invalid move: " + move);

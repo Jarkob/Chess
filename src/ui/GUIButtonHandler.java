@@ -5,11 +5,14 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import models.Move;
 import models.Tuple;
 import pieces.King;
+import pieces.Pawn;
 
 /**
  * ActionListener for a Tile represented by a JButton
@@ -110,6 +113,25 @@ public class GUIButtonHandler implements ActionListener
 						                new Object[] {"OK"}, "OK");
 							}
 							move.execute();
+							// check if promotion
+							// TODO
+							if(move.getNewTile().getPiece().getClass().getName().contains("Pawn")) {
+								Pawn pawn = (Pawn) move.getNewTile().getPiece();
+								if(pawn.promotion(move)) {
+									// show promotion dialog
+									String[] promotions = {"Queen", "Bishop", "Knight", "Rook"};
+									JComboBox comboBox = new JComboBox(promotions);
+									JOptionPane optionPane = new JOptionPane(
+											"Select the piece you wish your pawn to be promoted to:",
+											JOptionPane.QUESTION_MESSAGE, JOptionPane.DEFAULT_OPTION,
+											null, new Object[] {}, null);
+									optionPane.add(comboBox);
+									JDialog dialog = new JDialog();
+							        dialog.getContentPane().add(optionPane);
+							        dialog.pack();
+							        dialog.setVisible(true);
+								}
+							}
 							this.gui.setPlayer(!this.gui.isPlayer());
 						} else {
 							this.gui.setTo(null);

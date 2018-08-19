@@ -20,6 +20,25 @@ public class Pawn extends Piece
 	{
 		super(tile, color);
 	}
+	
+	/**
+	 * check if a pawn is promoted after a move
+	 * @param move
+	 * @return
+	 */
+	public boolean promotion(Move move)
+	{
+		if(this.color) {
+			if(move.getNewTile().getY() == 8) {
+				return true;
+			}
+		} else {
+			if(move.getNewTile().getY() == 1) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	@Override
 	public boolean isMoveLegal(Move move)
