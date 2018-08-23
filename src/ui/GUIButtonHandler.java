@@ -5,14 +5,19 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import models.Move;
 import models.Tuple;
+import pieces.Bishop;
 import pieces.King;
+import pieces.Knight;
 import pieces.Pawn;
+import pieces.Queen;
+import pieces.Rook;
 
 /**
  * ActionListener for a Tile represented by a JButton
@@ -114,19 +119,41 @@ public class GUIButtonHandler implements ActionListener
 							}
 							move.execute();
 							// check if promotion
-							// TODO
 							if(move.getNewTile().getPiece().getClass().getName().contains("Pawn")) {
 								Pawn pawn = (Pawn) move.getNewTile().getPiece();
 								if(pawn.promotion(move)) {
 									// show promotion dialog
+									JDialog dialog = new JDialog();
 									String[] promotions = {"Queen", "Bishop", "Knight", "Rook"};
 									JComboBox comboBox = new JComboBox(promotions);
+									JButton button = new JButton();
+									button.setText("Ok");
+									button.addActionListener(event -> {
+										switch(comboBox.getItemAt(comboBox.getSelectedIndex()).toString()) {
+											case "Queen":
+												move.getNewTile().setPiece(new Queen(move.getNewTile(), pawn.isColor()));
+												break;
+											case "Rook":
+												move.getNewTile().setPiece(new Rook(move.getNewTile(), pawn.isColor()));
+												break;
+											case "Knight":
+												move.getNewTile().setPiece(new Knight(move.getNewTile(), pawn.isColor()));
+												break;
+											case "Bishop":
+												move.getNewTile().setPiece(new Bishop(move.getNewTile(), pawn.isColor()));
+												break;
+											default:
+												break;
+										}
+										move.getNewTile().updateButton();
+										dialog.setVisible(false); // questionable
+									});
 									JOptionPane optionPane = new JOptionPane(
 											"Select the piece you wish your pawn to be promoted to:",
 											JOptionPane.QUESTION_MESSAGE, JOptionPane.DEFAULT_OPTION,
 											null, new Object[] {}, null);
 									optionPane.add(comboBox);
-									JDialog dialog = new JDialog();
+									optionPane.add(button);
 							        dialog.getContentPane().add(optionPane);
 							        dialog.pack();
 							        dialog.setVisible(true);
