@@ -1,5 +1,4 @@
 # Chess
-Java Chess
 A rudimental chess game implemented with java.
 
 Functions that are not yet implemented:
