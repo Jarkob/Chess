@@ -3,7 +3,6 @@ A rudimental chess game implemented with java.
 
 Functions that are not yet implemented:
 - rochade
-- promotion
 - en passant
 - illegal moves that threaten the own king
 - check-mate when the king is inevitable threatened
