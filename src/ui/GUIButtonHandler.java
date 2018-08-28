@@ -125,7 +125,7 @@ public class GUIButtonHandler implements ActionListener
 									// show promotion dialog
 									JDialog dialog = new JDialog();
 									String[] promotions = {"Queen", "Bishop", "Knight", "Rook"};
-									JComboBox comboBox = new JComboBox(promotions);
+									JComboBox<String> comboBox = new JComboBox<String>(promotions);
 									JButton button = new JButton();
 									button.setText("Ok");
 									button.addActionListener(event -> {
