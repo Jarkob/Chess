@@ -106,6 +106,7 @@ public class GUIButtonHandler implements ActionListener
 								JOptionPane.PLAIN_MESSAGE, JOptionPane.QUESTION_MESSAGE, this.icon,
 								new Object[] {"OK"}, "OK");
 					} else {
+						// check if move is legal
 						if(move.getOldTile().getPiece().isMoveLegal(move)) {
 							// check if game is over
 							if(move.getNewTile().getPiece() != null && move.getNewTile().getPiece() instanceof King) {

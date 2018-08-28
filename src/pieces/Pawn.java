@@ -52,8 +52,9 @@ public class Pawn extends Piece
 				}
 				// first move
 				else if(move.getNewTile().getY() - move.getOldTile().getY() == 2
-						&& this.getTile().getBoard().getTiles().get(new Tuple<Character, Integer>(move.getNewTile().getX(), move.getNewTile().getY())).getPiece() == null
-						&& this.getTile().getBoard().getTiles().get(new Tuple<Character, Integer>(move.getNewTile().getX(), move.getNewTile().getY() - 1)).getPiece() == null) {
+						&& move.getOldTile().getBoard().getTiles().get(new Tuple<Character, Integer>(move.getNewTile().getX(), move.getNewTile().getY())).getPiece() == null
+						&& move.getOldTile().getBoard().getTiles().get(new Tuple<Character, Integer>(move.getNewTile().getX(), move.getNewTile().getY() - 1)).getPiece() == null
+						&& move.getOldTile().getY() == 2) {
 					return true;
 				}
 			}
@@ -64,22 +65,23 @@ public class Pawn extends Piece
 				}
 				// first move
 				else if(move.getOldTile().getY() - move.getNewTile().getY() == 2
-						&& this.getTile().getBoard().getTiles().get(new Tuple<Character, Integer>(move.getNewTile().getX(), move.getNewTile().getY())).getPiece() == null
-						&& this.getTile().getBoard().getTiles().get(new Tuple<Character, Integer>(move.getNewTile().getX(), move.getNewTile().getY() + 1)).getPiece() == null) {
+						&& move.getOldTile().getBoard().getTiles().get(new Tuple<Character, Integer>(move.getNewTile().getX(), move.getNewTile().getY())).getPiece() == null
+						&& move.getOldTile().getBoard().getTiles().get(new Tuple<Character, Integer>(move.getNewTile().getX(), move.getNewTile().getY() + 1)).getPiece() == null
+						&& move.getOldTile().getY() == 7) {
 					return true;
 				}
 			}
 		}
 		// take
 		// TODO en passant
-		else if((((int) move.getNewTile().getX()) == ((int) move.getOldTile().getX() + 1) || ((int) move.getNewTile().getX() == (int) move.getOldTile().getX() - 1)) && move.getNewTile().getPiece() != null) {
-			// check direction of movement
-			if(Math.abs(move.getOldTile().getY() - move.getNewTile().getY()) == 1) {
-				if(this.tile.getBoard().getTiles().get(new Tuple<Character, Integer>(move.getNewTile().getX(), move.getNewTile().getY())).getPiece().isColor() != this.isColor()) {
-					return true;
-				}
-			}
-		}
+//		else if((((int) move.getNewTile().getX()) == ((int) move.getOldTile().getX() + 1) || ((int) move.getNewTile().getX() == (int) move.getOldTile().getX() - 1)) && move.getNewTile().getPiece() != null) {
+//			// check direction of movement
+//			if(Math.abs(move.getOldTile().getY() - move.getNewTile().getY()) == 1) {
+//				if(this.tile.getBoard().getTiles().get(new Tuple<Character, Integer>(move.getNewTile().getX(), move.getNewTile().getY())).getPiece().isColor() != this.isColor()) {
+//					return true;
+//				}
+//			}
+//		}
 		return false;
 	}
 }
