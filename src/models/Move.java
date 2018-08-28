@@ -1,7 +1,5 @@
 package models;
 
-import pieces.Pawn;
-
 /**
  * move of a piece
  * @author jakobbussas
