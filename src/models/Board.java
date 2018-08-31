@@ -97,6 +97,7 @@ public class Board
 	
 	private int id;
 	private Hashtable<Tuple<Character, Integer>, Tile> tiles;
+	private Move lastMove;
 	
 	/**
 	 * get the id
@@ -132,6 +133,24 @@ public class Board
 	public void setTiles(Hashtable<Tuple<Character, Integer>, Tile> tiles)
 	{
 		this.tiles = tiles;
+	}
+	
+	/**
+	 * get the last move
+	 * @return the last move
+	 */
+	public Move getLastMove()
+	{
+		return this.lastMove;
+	}
+	
+	/**
+	 * set the last move
+	 * @param lastMove the last move
+	 */
+	public void setLastMove(Move lastMove)
+	{
+		this.lastMove = lastMove;
 	}
 	
 	/**

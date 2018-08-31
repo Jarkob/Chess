@@ -119,6 +119,10 @@ public class GUIButtonHandler implements ActionListener
 						                new Object[] {"OK"}, "OK");
 							}
 							move.execute();
+							
+							// save as last move
+							this.gui.getBoard().setLastMove(move);
+							
 							// check if promotion
 							if(move.getNewTile().getPiece().getClass().getName().contains("Pawn")) {
 								Pawn pawn = (Pawn) move.getNewTile().getPiece();
