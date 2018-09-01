@@ -1,6 +1,7 @@
 package game;
 
 import models.Board;
+import models.Move;
 import ui.CLI;
 import ui.GUI;
 
@@ -47,7 +48,7 @@ public class Game
 	private int id;
 
 	private Board board;
-
+	
 	/**
 	 * get the id
 	 * @return the id

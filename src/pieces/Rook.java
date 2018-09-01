@@ -19,6 +19,27 @@ public class Rook extends Piece
 	public Rook(Tile tile, boolean color)
 	{
 		super(tile, color);
+		this.wasMoved = false;
+	}
+	
+	private boolean wasMoved;
+	
+	/**
+	 * get if rook was moved
+	 * @return if rook was moved
+	 */
+	public boolean wasMoved()
+	{
+		return this.wasMoved;
+	}
+	
+	/**
+	 * set if rook was moved
+	 * @param wasMoved if rook was moved
+	 */
+	public void setWasMoved(boolean wasMoved)
+	{
+		this.wasMoved = wasMoved;
 	}
 
 	@Override
